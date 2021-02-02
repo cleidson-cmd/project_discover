@@ -1,0 +1,44 @@
+*{
+    margin: 0; /*margem*/
+    padding: 0; /*preenchimento*/
+    box-sizing: border-box; /*estabilizar tamanho da caixa*/
+}
+
+
+
+body{
+    background: #f0f2f5;
+    font-family: 'poppins', sans-serif; /*poppins = falia da fonte sans-serif=fonte nao lisa*/
+}
+
+/*container main===========================*/
+
+.container{
+    width: 300px;
+    margin: auto; /*margem balanceada ou centralizada*/
+
+}
+
+/*header===========================*/
+header{
+    background: #2d4a22;
+    padding: 2rem 0rem 10rem; /* rem=preenche toda a lateral do item, ou 2rem 3rem 5rem laterais especificas*/
+    text-align: center;
+}
+
+#logo{
+    color: #fff;
+    font-weight: 100; /*peso da fonte*/
+}
+
+/*balance===========================*/
+
+balance{
+
+}
+
+
+/*foter===========================*/
+footer{
+    text-align: center;
+}
