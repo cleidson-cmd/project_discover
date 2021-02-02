@@ -14,9 +14,17 @@ body{
 /*container main===========================*/
 
 .container{
-    width: 300px;
+    width: min(90vw, 800px);/*procura o menor valor entre vw=extremidades total da pagina entre 90vw=90 de toda a pagina e 800px*/
     margin: auto; /*margem balanceada ou centralizada*/
 
+}
+
+/*titles===========================*/
+h2{
+    margin-top: 3.2rem;
+    margin-bottom: 0.8rem;
+    color: #363f5f;
+    font-weight: normal; /*afina a fonte*/
 }
 
 /*header===========================*/
@@ -33,8 +41,19 @@ header{
 
 /*balance===========================*/
 
-balance{
+#balance{
+    margin-top: -8rem; /*rem preenche lateral negativa antonimo de afastar*/
+}
 
+#balance h2{
+    color: white;
+    margin-top: 0;
+}
+
+/*card===========================*/
+.card{
+    background: white;
+    padding: 1.5 2rem;
 }
 
 
