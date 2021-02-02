@@ -57,7 +57,7 @@ header{
 /*card===========================*/
 .card{
     background: white;
-    padding: 1.5 2rem;
+    padding: 1.5rem 2rem;
     border-radius: 0.25rem; /*arredondamento das bordas*/
     margin-bottom: 2rem; /*espaçamento enre itens*/
 }
@@ -70,7 +70,32 @@ header{
 .card p{
     font-size: 2rem;
     line-height: 3rem;/*afasta ou junta as linhas ex: espaçamento entre textos*/
-    
+    margin-top: 1rem;
+}
+
+
+.card.total{
+    background: #49aa26;
+    color: white;
+}
+
+/*table===========================*/
+
+#data-table{
+    width: 100%; /*pegando 100% do espaço da caixa que esta*/
+}
+
+table th{
+    background: white;
+    font-weight: normal;
+    padding: 1rem 2rem;
+    text-align: left;
+    color: #969cb3;
+}
+
+table td{
+    background: white;
+    border-spacing: 0 0.5; /*espaçamento x y*/
 }
 
 /*foter===========================*/
