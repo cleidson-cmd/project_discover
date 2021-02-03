@@ -16,7 +16,7 @@
 <body>
 
     <header>
-        <h1 id="logo">dev.finance$</h1>
+        <img src="./assets/logo.svg" alt="logo dev.finance"> <!--alt = caso a imagem nao funcione ele mostra esta alternativa alem de descrever para o motor de busca-->
     </header>
     <!--cabeçalho do documento-->
 
@@ -24,10 +24,14 @@
         <!--parte principal do documento-->
         <section id="balance">
             <!--seção balanço-->
-            <h2>Balaço</h2>
+            <h2 class="sr-only">Balaço</h2>
 
             <div class="card">
-                <h3>Entradas</h3>
+
+                <h3> 
+                    <span>Entradas</span><!--span faz com que o item se mantenha na linha para nao ficar um abaixo do outro-->
+                    <img src="./assets/income.svg" alt="imagem de entradas">
+                </h3>
                 <p>R$ 5.000,00</p>
 
             </div>
@@ -48,7 +52,7 @@
 
         <section id="transaction">
             <!--seção transaçao-->
-            <h2>Transações</h2>
+            <h2 class="sr-only">Transações</h2>
 
             <table id="data-table">
                 <thead>
