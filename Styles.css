@@ -83,22 +83,51 @@ header{
 
 #data-table{
     width: 100%; /*pegando 100% do espaço da caixa que esta*/
+    border-spacing: 0 0.5rem; /*espaçamento x y colando as celulas da tabela formando uma so*/
+    color: #969cb3;
 }
 
-table th{
+table thead tr th:first-child,
+table tbody tr td:first-child{ /*pega o primeiro filho da tag tr e maraca com os estilos*/
+    border-radius: 0.25rem 0 0 0.25rem;
+}
+
+table thead th{
     background: white;
     font-weight: normal;
     padding: 1rem 2rem;
     text-align: left;
-    color: #969cb3;
 }
 
-table td{
+table tbody tr{
+    opacity: 0.7;
+}
+
+table tbody tr:hover{
+    opacity: 1;
+}
+
+table tbody td{
     background: white;
-    border-spacing: 0 0.5; /*espaçamento x y*/
+    padding: 1rem 2rem; 
+}
+
+td.description{
+    color: var(--dark-blue);
+}
+
+td.income{
+    color: #12a454;
+}
+
+td.expense{
+    color: #e92929;
 }
 
 /*foter===========================*/
 footer{
     text-align: center;
+    padding: 4rem 0 2rem;
+    color: var(--dark-blue);
+    opacity: 0.6;
 }
