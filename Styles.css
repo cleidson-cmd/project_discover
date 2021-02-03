@@ -80,7 +80,8 @@ header{
     font-weight: normal;
     font-size: 1rem;
     display: flex; /*por padrao o html mostra item abaixo de item com flex ele mostra ao lado do outro*/
-
+    align-items: center;
+    justify-content: space-between; /*adiciona espaço entre itens*/
 }
 
 .card p{
