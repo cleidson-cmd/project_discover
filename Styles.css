@@ -112,16 +112,22 @@ header{
     color: white;
 }
 
-/*table===========================*/
+/*transação===========================*/
 
-#data-table{
+#transaction{
     display: block;
     width: 100%; /*pegando 100% do espaço da caixa que esta*/
     border-spacing: 0 0.5rem; /*espaçamento x y colando as celulas da tabela formando uma so*/
+   
+
+    overflow-x: auto;/*fluir automatico no eixo x quando for necessario para rolar de um lado para outro no local que ele e aplicado*/
+}
+
+/*table===========================*/
+#data-table{
+    width: 100%; /*pegando 100% do espaço da caixa que esta*/
+    border-spacing: 0 0.5rem; /*espaçamento x y colando as celulas da tabela formando uma so*/
     color: #969cb3;
-
-    overflow-x: auto;/*fluir automatico no eixo x quando for necessario para rolar de um lado para outro apenas na aria que precisa*/
-
 }
 
 table thead tr th:first-child,
@@ -164,6 +170,35 @@ td.income{
 
 td.expense{
     color: #e92929;
+}
+
+/*modal===========================*/
+.modal-overlay{/*aria grande transparente sem active*/
+    width: 100%; /*ocupar toda aria altura e largura porem ele por padrao vai respeitar as caixas internas*/
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.7); /*o fundo transparente*/
+    position: fixed; /*fixando o fundo na parte em que se encontra que é baixo*/
+    top: 0;/*levando ele para posiçao 0 no topo fazendo que ocupe toda a*/
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0; /*nao aparece na tela mais ocupa o espaço na tela*/
+    visibility: hidden;/*esconde o espaço dele*/
+}
+
+.modal-overlay.active{ /*aria com active*/
+    opacity: 1; /*opacidade*/
+    visibility: visible; /*torna o item visivel*/
+}
+
+.modal{
+    background: #f0f2f5;
+    padding: 2.4rem;
+
+    position: relative;
 }
 
 /*foter===========================*/
