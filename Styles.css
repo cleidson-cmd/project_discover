@@ -115,9 +115,13 @@ header{
 /*table===========================*/
 
 #data-table{
+    display: block;
     width: 100%; /*pegando 100% do espaço da caixa que esta*/
     border-spacing: 0 0.5rem; /*espaçamento x y colando as celulas da tabela formando uma so*/
     color: #969cb3;
+
+    overflow-x: auto;/*fluir automatico no eixo x quando for necessario para rolar de um lado para outro apenas na aria que precisa*/
+
 }
 
 table thead tr th:first-child,
