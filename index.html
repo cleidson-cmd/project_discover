@@ -64,7 +64,8 @@
             <!--seção transaçao-->
             <h2 class="sr-only">Transações</h2>
 
-            <a href="#" class="button">+ Nova Transação</a>
+            <a href="#" onclick="Modal.open()" class="button">+ Nova Transação</a>
+            <!--onclick quando clicado exexuta a funçao open que esta no script-->
 
             <table id="data-table">
                 <thead>
@@ -109,28 +110,37 @@
         </section>
     </main>
 
-    <div class="modal-overlay active"><!--cria um tipo de pop up overlay-->
+    <div class="modal-overlay">
+        <!--cria um tipo de pop up overlay-->
         <div class="modal">
             <div class="modal-content">
                 <div class="form">
                     <h2>Nova Transação</h2>
                     <form action="">
                         <div class="input-group">
-                            <label class="sr-only" for="description">Descrição</label><!--leitores de tela ler as label-->
-                            <input type="text"
-                            id="description"
-                            name="description"
-                            value=""
-                            placeholder="descrição">
+                            <label class="sr-only" for="description">Descrição</label>
+                            <!--leitores de tela ler as label-->
+                            <input type="text" id="description" name="description" value="" placeholder="descrição">
                         </div>
 
                         <div class="input-group">
-                            <label class="sr-only" for="amount"></label><!--leitores de tela ler as label-->
-                            <input type="number"
-                            id="amount"
-                            name="amount"
-                            value=""
-                            placeholder="descrição">
+                            <label class="sr-only" for="amount">Valor</label>
+                            <!--leitores de tela ler as label-->
+                            <input type="number" id="amount" name="amount" value="" step="0.01" placeholder="0,00">
+                        </div>
+                        <small class="help">Use o sinal - (negativo) para despesas e , (virgulas) para casas
+                            decimais</small>
+                        <!--textos pequenos-->
+
+                        <div class="input-group">
+                            <label class="sr-only" for="date">Descrição</label>
+                            <!--leitores de tela ler as label-->
+                            <input type="date" id="date" name="date">
+                        </div>
+                        <!--onclick close vai executar o script close -->
+                        <div class="input-group actions">
+                            <a href="#" onclick="Modal.close()" class="button cancel">Cancelar</a>
+                            <button>Salvar</button>
                         </div>
                     </form>
                 </div>
@@ -142,6 +152,31 @@
         <p>Dev.Finance$</p>
     </footer>
     <!--roda pe-->
+    <!--variaveis const, let e var const nao muda a atribuiçao enquanto let permite mudar o atributo da variavel pode atribuir outro dado-->
+    <script>
+
+        const Modal = {
+            open() {
+                //abrir modal
+                //adicionar a class active ao modal
+                document
+                    .querySelector('.modal-overlay')//procura por todo html o o seletor modal-overlay
+                    .classList
+                    .add('active') //adiciona o active que foi construido formulario
+            },
+
+            close() {
+                //fechar o modal
+                //remover a class do modal
+                document
+                    .querySelector('.modal-overlay')//procura por todo html o modal-overlay
+                    .classList
+                    .remove('active') //remove o active que foi construido formulario
+
+            }
+        }
+    </script>
+
 </body>
 
 </html>
