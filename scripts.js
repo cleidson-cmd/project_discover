@@ -23,10 +23,24 @@
         const Transaction = [{//esse é um array
             id: 1,
             description: 'luz',
-            amount: -50000
+            amount: -50000,
+            date: '23/01/2021'
+        },
+
+        {
+            id: 1,
+            description: 'Website',
+            amount: -500000,
+            date: '23/01/2021'
         }
-        {}
-        {}]
+
+        {
+            id: 1,
+            description: 'lnternet',
+            amount: -200,
+            date: '23/01/2021'
+        }
+        ]
 
         const Transaction = {
             incomes(){
@@ -39,5 +53,19 @@
 
             total(){
                 //entradas menos saidas
+            }
+        }
+
+
+        //preciso substituir os dados do hatml com os do js
+        const dom {
+            innerHTMLTransaction(){
+
+                const html = `<tr>
+                    <td class="description">Luz</td>
+                    <td class="expense">R$ 500,00</td>
+                    <td class="date">23/01/2021</td>
+                    <td><img src="./assets/minus.svg" alt="remover transação"></td>
+                </tr>`
             }
         }
