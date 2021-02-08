@@ -86,7 +86,7 @@ const dom = {
 
 const Utils = {
     formatCurrency(value) {
-        console.log(value)
+        const signal = Number(value) < 0 ? "-" : ""
     }
 }
 
