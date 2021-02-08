@@ -68,9 +68,13 @@ const dom = {
     },
 
     innerHTMLTransaction(transaction) {//adcionando as variaves a baixo ex: ${var} 
+        const CSSclass = transaction.amount > 0 ? "income" : "expense"//condiçao para saber se o numero é negativo 
+        
+        const amount = Utils.formatCurrency(transaction.amount)
+        
         const html = `
                     <td class="description">${transaction.description}</td>
-                    <td class="expense">${transaction.amount}</td>
+                    <td class="${CSSclass}">${transaction.amount}</td>
                     <td class="date">${transaction.date}</td>
                     <td><img src="./assets/minus.svg" alt="remover transação"></td>
                 `
@@ -80,8 +84,20 @@ const dom = {
 }
 
 
+const Utils = {
+    formatCurrency(value) {
+        console.log(value)
+    }
+}
 
-dom.addTransaction(transactions[0])
-dom.addTransaction(transactions[1])
-dom.addTransaction(transactions[2])
+
+//dom.addTransaction(transactions[0]) mostrando os dados por indice
+//dom.addTransaction(transactions[1])
+//dom.addTransaction(transactions[2])
+
+
+
+transactions.forEach(function(transaction){// mostrando os dados com for
+    dom.addTransaction(transaction)
+})
 
