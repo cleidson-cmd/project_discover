@@ -44,15 +44,37 @@ const transactions = [{//esse é um array
 
 const Transaction = {
     incomes() {
-        //somar as entradas
+        let income = 0;
+        //pegar todas as transaçoes
+        //para cada transaçao, se a transaça e maior que zero
+        transactions.forEach(transaction => {
+            //se for maior que zero 
+            if (transaction.amount > 0) {
+                //somar a uma variavel e retornar a variavel
+                income += Transaction.amount;
+            }
+        })
+        return income
     },
 
     expenses() {
-        //somar as saidas
+        let expense = 0;
+        //pegar todas as transaçoes
+        //para cada transaçao, se a transaça e maior que zero
+        transactions.forEach(transaction => {
+            //se for menor que zero 
+            if (transaction.amount < 0) {
+                //somar a uma variavel e retornar a variavel
+                expense += Transaction.amount;
+            }
+        })
+        return income
+
     },
 
     total() {
         //entradas menos saidas
+        return transaction.incomes() + transaction.expenses();
     }
 }
 
@@ -69,24 +91,46 @@ const dom = {
 
     innerHTMLTransaction(transaction) {//adcionando as variaves a baixo ex: ${var} 
         const CSSclass = transaction.amount > 0 ? "income" : "expense"//condiçao para saber se o numero é negativo 
-        
+
         const amount = Utils.formatCurrency(transaction.amount)
-        
+
         const html = `
                     <td class="description">${transaction.description}</td>
-                    <td class="${CSSclass}">${transaction.amount}</td>
+                    <td class="${CSSclass}">${amount}</td>
                     <td class="date">${transaction.date}</td>
                     <td><img src="./assets/minus.svg" alt="remover transação"></td>
                 `
 
         return html//serve para enviar o item pra ser usado fora desse bloco
+    },
+
+    updateBanance() {
+        document
+            .getElementById("incomeDisplay")
+            .innerHTML = Utils.formatCurrency(transaction.income())
+
+        document
+            .getElementById("expenseDisplay")
+            .innerHTML = Utils.formatCurrency(transaction.expenses())
+
+        document
+            .getElementById("totalDisplay")
+            .innerHTML = Utils.formatCurrency(transaction.total())
     }
 }
 
 
 const Utils = {
-    formatCurrency(value) {
+    formatCurrency(value) {//parte que transforma os numeros em moedas brasileiras
         const signal = Number(value) < 0 ? "-" : ""
+        value = String(value).replace(/\D/g, "") // /\D/g ache tudo que for numeros  g = global e toque or vasio ""
+        value = Number(value) / 100
+        value = value.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        })
+
+        return signal + value
     }
 }
 
@@ -97,7 +141,8 @@ const Utils = {
 
 
 
-transactions.forEach(function(transaction){// mostrando os dados com for
+transactions.forEach(function (transaction) {// mostrando os dados com for
     dom.addTransaction(transaction)
 })
 
+dom.updateBanance()
