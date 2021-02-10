@@ -37,12 +37,12 @@ const transactions = [{//esse é um array
 {
     id: 3,
     description: 'lnternet',
-    amount: -200,
+    amount: -20000,
     date: '23/01/2021'
 }
 ]
 
-const Transaction = {
+const transaction = {//cauculos matematicos
     incomes() {
         let income = 0;
         //pegar todas as transaçoes
@@ -51,7 +51,7 @@ const Transaction = {
             //se for maior que zero 
             if (transaction.amount > 0) {
                 //somar a uma variavel e retornar a variavel
-                income += Transaction.amount;
+                income += transaction.amount;
             }
         })
         return income
@@ -65,10 +65,10 @@ const Transaction = {
             //se for menor que zero 
             if (transaction.amount < 0) {
                 //somar a uma variavel e retornar a variavel
-                expense += Transaction.amount;
+                expense += transaction.amount;
             }
         })
-        return income
+        return expense
 
     },
 
@@ -104,10 +104,10 @@ const dom = {
         return html//serve para enviar o item pra ser usado fora desse bloco
     },
 
-    updateBanance() {
+    updateBanance() {//parte bonita ds numeros
         document
             .getElementById("incomeDisplay")
-            .innerHTML = Utils.formatCurrency(transaction.income())
+            .innerHTML = Utils.formatCurrency(transaction.incomes())
 
         document
             .getElementById("expenseDisplay")
