@@ -85,7 +85,7 @@ const Transaction = {//cauculos matematicos
 
     total() {
         //entradas menos saidas
-        return transaction.incomes() + transaction.expenses();
+        return Transaction.incomes() + Transaction.expenses();
     }
 }
 
