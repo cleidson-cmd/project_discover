@@ -20,34 +20,45 @@ const Modal = {
     }
 }
 
-const transactions = [{//esse é um array
+const transactions = [
+    {//esse é um array
     id: 1,
     description: 'luz',
     amount: -50000,
-    date: '23/01/2021'
+    date: '23/01/2021',
 },
 
 {
     id: 2,
     description: 'Website',
-    amount: -500000,
-    date: '23/01/2021'
+    amount: 500000,
+    date: '23/01/2021',
 },
 
 {
     id: 3,
     description: 'lnternet',
     amount: -20000,
-    date: '23/01/2021'
-}
+    date: '23/01/2021',
+},
 ]
 
-const transaction = {//cauculos matematicos
+const Transaction = {//cauculos matematicos
+    all: transactions,
+
+    add(transaction){
+        Transaction.all.push(transaction)
+
+        console.log(Transaction.all)
+
+    },
+
+
     incomes() {
         let income = 0;
         //pegar todas as transaçoes
         //para cada transaçao, se a transaça e maior que zero
-        transactions.forEach(transaction => {
+        Transaction.all.forEach(transaction => {
             //se for maior que zero 
             if (transaction.amount > 0) {
                 //somar a uma variavel e retornar a variavel
@@ -61,7 +72,7 @@ const transaction = {//cauculos matematicos
         let expense = 0;
         //pegar todas as transaçoes
         //para cada transaçao, se a transaça e maior que zero
-        transactions.forEach(transaction => {
+        Transaction.all.forEach(transaction => {
             //se for menor que zero 
             if (transaction.amount < 0) {
                 //somar a uma variavel e retornar a variavel
@@ -104,18 +115,18 @@ const dom = {
         return html//serve para enviar o item pra ser usado fora desse bloco
     },
 
-    updateBanance() {//parte bonita ds numeros
+    updateBalance() {//parte bonita ds numeros
         document
             .getElementById("incomeDisplay")
-            .innerHTML = Utils.formatCurrency(transaction.incomes())
+            .innerHTML = Utils.formatCurrency(Transaction.incomes())
 
         document
             .getElementById("expenseDisplay")
-            .innerHTML = Utils.formatCurrency(transaction.expenses())
+            .innerHTML = Utils.formatCurrency(Transaction.expenses())
 
         document
             .getElementById("totalDisplay")
-            .innerHTML = Utils.formatCurrency(transaction.total())
+            .innerHTML = Utils.formatCurrency(Transaction.total())
     }
 }
 
@@ -145,4 +156,12 @@ transactions.forEach(function (transaction) {// mostrando os dados com for
     dom.addTransaction(transaction)
 })
 
-dom.updateBanance()
+dom.updateBalance()
+
+Transaction.add({
+    id: 39,
+    description: "alo",
+    amount: 200,
+    date: "23/03/2021"
+})
+
