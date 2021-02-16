@@ -49,7 +49,7 @@ const Transaction = {//cauculos matematicos
     add(transaction) {
         Transaction.all.push(transaction)
 
-        App.reload()
+        App.reload() //chama a funçao reload a baixo
     },
 
 
@@ -128,7 +128,7 @@ const dom = {
             .innerHTML = Utils.formatCurrency(Transaction.total())
     },
 
-    clearTransactions() {
+    clearTransactions() {//funçao que limpa a s transiçoes para nao repetir
         dom.transactionsContainer.innerHTML = ""
     }
 }
@@ -154,7 +154,7 @@ const Utils = {
 //dom.addTransaction(transactions[2])
 
 const App = {
-    init() {
+    init() {//adciona os itens todos
 
 
         Transaction.all.forEach(transaction => {// mostrando os dados com for
@@ -166,7 +166,7 @@ const App = {
     },
 
     reload() {
-        dom.clearTransactions()
+        dom.clearTransactions()//chama a funçao que nao repete os itens ja existentes
 
         App.init()
     },
@@ -176,7 +176,7 @@ const App = {
 App.init()
 
 
-Transaction.add({
+Transaction.add({//adiciona os intens
     id: 39,
     description: "alo",
     amount: 200,
