@@ -20,36 +20,40 @@ const Modal = {
     }
 }
 
-const transactions = [
-    {//esse é um array
-        id: 1,
-        description: 'luz',
-        amount: -50000,
-        date: '23/01/2021',
-    },
-
-    {
-        id: 2,
-        description: 'Website',
-        amount: 500000,
-        date: '23/01/2021',
-    },
-
-    {
-        id: 3,
-        description: 'lnternet',
-        amount: -20000,
-        date: '23/01/2021',
-    },
-]
 
 const Transaction = {//cauculos matematicos
-    all: transactions,
+    all: [
+        {//esse é um array
+          
+            description: 'luz',
+            amount: -50000,
+            date: '23/01/2021',
+        },
+    
+        {
+           
+            description: 'Website',
+            amount: 500000,
+            date: '23/01/2021',
+        },
+    
+        {
+        
+            description: 'lnternet',
+            amount: -20000,
+            date: '23/01/2021',
+        },
+    ],
 
     add(transaction) {
         Transaction.all.push(transaction)
 
         App.reload() //chama a funçao reload a baixo
+    },
+
+    remove(index){
+        Transaction.all.splice(index, 1)// remove 1 elemento
+        App.reload()
     },
 
 
@@ -176,9 +180,4 @@ const App = {
 App.init()
 
 
-Transaction.add({//adiciona os intens
-    id: 39,
-    description: "alo",
-    amount: 200,
-    date: "23/03/2021"
-})
+
