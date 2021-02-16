@@ -22,35 +22,34 @@ const Modal = {
 
 const transactions = [
     {//esse é um array
-    id: 1,
-    description: 'luz',
-    amount: -50000,
-    date: '23/01/2021',
-},
+        id: 1,
+        description: 'luz',
+        amount: -50000,
+        date: '23/01/2021',
+    },
 
-{
-    id: 2,
-    description: 'Website',
-    amount: 500000,
-    date: '23/01/2021',
-},
+    {
+        id: 2,
+        description: 'Website',
+        amount: 500000,
+        date: '23/01/2021',
+    },
 
-{
-    id: 3,
-    description: 'lnternet',
-    amount: -20000,
-    date: '23/01/2021',
-},
+    {
+        id: 3,
+        description: 'lnternet',
+        amount: -20000,
+        date: '23/01/2021',
+    },
 ]
 
 const Transaction = {//cauculos matematicos
     all: transactions,
 
-    add(transaction){
+    add(transaction) {
         Transaction.all.push(transaction)
 
-        console.log(Transaction.all)
-
+        App.reload()
     },
 
 
@@ -127,6 +126,10 @@ const dom = {
         document
             .getElementById("totalDisplay")
             .innerHTML = Utils.formatCurrency(Transaction.total())
+    },
+
+    clearTransactions() {
+        dom.transactionsContainer.innerHTML = ""
     }
 }
 
@@ -150,13 +153,28 @@ const Utils = {
 //dom.addTransaction(transactions[1])
 //dom.addTransaction(transactions[2])
 
+const App = {
+    init() {
 
 
-transactions.forEach(function (transaction) {// mostrando os dados com for
-    dom.addTransaction(transaction)
-})
+        Transaction.all.forEach(transaction => {// mostrando os dados com for
+            dom.addTransaction(transaction)
+        })
 
-dom.updateBalance()
+        dom.updateBalance()
+
+    },
+
+    reload() {
+        dom.clearTransactions()
+
+        App.init()
+    },
+}
+
+
+App.init()
+
 
 Transaction.add({
     id: 39,
@@ -164,4 +182,3 @@ Transaction.add({
     amount: 200,
     date: "23/03/2021"
 })
-
