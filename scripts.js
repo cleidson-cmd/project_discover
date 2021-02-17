@@ -264,8 +264,12 @@ const App = {
     init() {//adciona os itens todos
 
 
-        Transaction.all.forEach(dom.addTransaction)
-        dom.updateBalance()
+        Transaction.all.forEach(dom.addTransaction) // adiciona na dom
+
+
+        dom.updateBalance() //atualiza os cartoes
+
+        Storage.set(Transaction.all) // atualiza o local storage
 
     },
 
