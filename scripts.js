@@ -139,6 +139,19 @@ const dom = {
 
 
 const Utils = {
+    formatAmount(value){
+        value = Number(value) * 100 //multiplica o valor digitado por 100
+        return value
+
+    },
+
+    formatDate(date){
+        //split = separar coisas nesse caso o - para formatar a data ,dia, mes
+        const splittedDate = date.split("-")
+        return `${splittedDate[2]} / ${splittedDate[1]} / ${splittedDate[0]}`
+        //separando os dias, data e mes na ordem
+    },
+
     formatCurrency(value) {//parte que transforma os numeros em moedas brasileiras
         const signal = Number(value) < 0 ? "-" : ""
         value = String(value).replace(/\D/g, "") // /\D/g ache tudo que for numeros  g = global e toque or vasio ""
@@ -163,6 +176,7 @@ const Form = {
             description: Form.description.value,
             amount: Form.amount.value,//retornando apenas os valores nescessario do input com id especifico
             date: Form.date.value
+    
         }
     },
 
@@ -180,17 +194,43 @@ const Form = {
         }
     },
 
+    formatValues(){
+        let {description, amount, date} = Form.getValues()
+        amount = Utils.formatAmount(amount)
+
+        date = Utils.formatDate(date)
+
+        return {
+            description,
+            amount,
+            date
+        }
+        
+    },
+
+    clearFields() {//limpando os campos
+        Form.description.value = ""
+        Form.amount.value = ""
+        Form.date.value = ""
+    },
+
+    saveTransaction(transaction){//salvando transaçao
+        Transaction.add(transaction)
+    },
+
     submit(event) {
         event.preventDefault()//tira o comportamento padrao do potao permitindo criar um novo comportamento
 
         try{
         Form.validateFields()
         //formatar os dados para salvar
-        //Form.formatData()
+        const transaction = Form.formatValues()
         //salvar
+        Form.saveTransaction(transaction)
         //apagar os dados do formulario
+        Form.clearFields()
         //fechar o modal tela de cadastro
-        //atualizar a aplicaçao
+        Modal.close()
         }catch (error){//PEGAR ERROS CRIADO COMO throw
             alert(error.message) //pegando o erro e dando um alerta!
         }
