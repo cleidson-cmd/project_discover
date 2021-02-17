@@ -152,6 +152,42 @@ const Utils = {
     }
 }
 
+const Form = {
+    description: document.querySelector('input#description'),//pegando todo valor do input que tenha id description
+    amount: document.querySelector('input#amount'),//pegando todo valor do input que tenha id amount
+    date: document.querySelector('input#date'),//pegando todo valor do input que tenha id date 
+
+
+    getValues(){
+        return{
+            description: Form.description.value,
+            amount: Form.amount.value,//retornando apenas os valores nescessario do input com id especifico
+            date: Form.date.value
+        }
+    },
+
+
+
+    validateFields() {
+        const {description, amount, date} = Form.getValues()
+        //trim == limpar espaços vazio === igual || == ou conectivo logico
+        if(description.trim() === "" || amount.trim() === "" ||  date.trim() === "")
+    },
+
+    submit(event) {
+        event.preventDefault()//tira o comportamento padrao do potao permitindo criar um novo comportamento
+
+        //verificar se todas a informaçoes foram preenchidas
+        Form.validateFields()
+
+        //formatar os dados para salvar
+        //Form.formatData()
+        //salvar
+        //apagar os dados do formulario
+        //fechar o modal tela de cadastro
+        //atualizar a aplicaçao
+    }
+}
 
 //dom.addTransaction(transactions[0]) mostrando os dados por indice
 //dom.addTransaction(transactions[1])
