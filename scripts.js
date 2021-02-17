@@ -168,24 +168,34 @@ const Form = {
 
 
 
-    validateFields() {
+    validateFields() {   //verificar se todas a informaçoes foram preenchidas
         const {description, amount, date} = Form.getValues()
         //trim == limpar espaços vazio === igual || == ou conectivo logico
-        if(description.trim() === "" || amount.trim() === "" ||  date.trim() === "")
+        if(description.trim() === "" || 
+        amount.trim() === "" ||  
+        date.trim() === "") {
+            //throw == jogar pra fora,  novo erro ex: criando um novo erro
+            throw new Error("Por favor, preencha todos os campos")
+            
+        }
     },
 
     submit(event) {
         event.preventDefault()//tira o comportamento padrao do potao permitindo criar um novo comportamento
 
-        //verificar se todas a informaçoes foram preenchidas
+        try{
         Form.validateFields()
-
         //formatar os dados para salvar
         //Form.formatData()
         //salvar
         //apagar os dados do formulario
         //fechar o modal tela de cadastro
         //atualizar a aplicaçao
+        }catch (error){//PEGAR ERROS CRIADO COMO throw
+            alert(error.message) //pegando o erro e dando um alerta!
+        }
+     
+        
     }
 }
 
