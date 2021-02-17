@@ -99,11 +99,14 @@ const dom = {
     addTransaction(transaction, index) { // adiciona o transition e index
         //console.log(transactions)//mostrar  valor de transaction no console do browser
         const tr = document.createElement('tr') //cria uma nova tr da tabela
-        tr.innerHTML = dom.innerHTMLTransaction(transaction)//capitura o documento html que o return esta enviando a baixo
+        tr.innerHTML = dom.innerHTMLTransaction(transaction, index)//capitura o documento html que o return esta enviando a baixo
+        tr.dataset.index = index
+
         dom.transactionsContainer.appendChild(tr) //adicionando os novos dados ao documento tr do html
+        
     },
 
-    innerHTMLTransaction(transaction) {//adcionando as variaves a baixo ex: ${var} 
+    innerHTMLTransaction(transaction, index) {//adcionando as variaves a baixo ex: ${var} 
         const CSSclass = transaction.amount > 0 ? "income" : "expense"//condiçao para saber se o numero é negativo 
 
         const amount = Utils.formatCurrency(transaction.amount)
@@ -112,7 +115,7 @@ const dom = {
                     <td class="description">${transaction.description}</td>
                     <td class="${CSSclass}">${amount}</td>
                     <td class="date">${transaction.date}</td>
-                    <td><img src="./assets/minus.svg" alt="remover transação"></td>
+                    <td><img onclick ="Transaction.remove(${index})" src="./assets/minus.svg" alt="remover transação"></td>
                 `
 
         return html//serve para enviar o item pra ser usado fora desse bloco
@@ -140,7 +143,7 @@ const dom = {
 
 const Utils = {
     formatAmount(value){
-        value = Number(value) * 100 //multiplica o valor digitado por 100
+        value = Number(value.replace(/\,\./g, "")) * 100 //multiplica o valor digitado por 100
         return value
 
     },
@@ -247,10 +250,7 @@ const App = {
     init() {//adciona os itens todos
 
 
-        Transaction.all.forEach(transaction => {// mostrando os dados com for
-            dom.addTransaction(transaction)
-        })
-
+        Transaction.all.forEach(dom.addTransaction)
         dom.updateBalance()
 
     },
