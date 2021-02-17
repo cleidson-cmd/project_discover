@@ -20,30 +20,42 @@ const Modal = {
     }
 }
 
+const Storage = {//JSON.parse converte a string em array novamante 
+    get() {// retorna o array que fo convertido em string abaixo, converte em um array novamente
+        //pegando pela chave e valor "dev.fina..." ou uma array vazio se for o cas
+        return JSON.parse(localStorage.getItem("dev.finances: transactions")) || []
+    },
+
+    set(transactions) {
+        localStorage.setItem("dev.finances: transactions", 
+        JSON.stringify(transactions))//json.stringify == transformar array em string :pegando array com as transactions
+    }
+}
 
 const Transaction = {//cauculos matematicos
-    all: [
-        {//esse é um array
-          
-            description: 'luz',
-            amount: -50000,
-            date: '23/01/2021',
-        },
-    
-        {
-           
-            description: 'Website',
-            amount: 500000,
-            date: '23/01/2021',
-        },
-    
-        {
-        
-            description: 'lnternet',
-            amount: -20000,
-            date: '23/01/2021',
-        },
-    ],
+    all: Storage.get(), 
+    //[
+     //   {//esse é um array
+
+    //        description: 'luz',
+    //        amount: -50000,
+    //        date: '23/01/2021',
+    //    },
+
+    //    {
+
+     //       description: 'Website',
+     //       amount: 500000,
+     //       date: '23/01/2021',
+     //   },
+
+     //   {
+
+     //       description: 'lnternet',
+     //      amount: -20000,
+     //       date: '23/01/2021',
+     //   },
+    //],
 
     add(transaction) {
         Transaction.all.push(transaction)
@@ -51,7 +63,7 @@ const Transaction = {//cauculos matematicos
         App.reload() //chama a funçao reload a baixo
     },
 
-    remove(index){
+    remove(index) {
         Transaction.all.splice(index, 1)// remove 1 elemento
         App.reload()
     },
@@ -103,7 +115,7 @@ const dom = {
         tr.dataset.index = index
 
         dom.transactionsContainer.appendChild(tr) //adicionando os novos dados ao documento tr do html
-        
+
     },
 
     innerHTMLTransaction(transaction, index) {//adcionando as variaves a baixo ex: ${var} 
@@ -142,13 +154,13 @@ const dom = {
 
 
 const Utils = {
-    formatAmount(value){
+    formatAmount(value) {
         value = Number(value.replace(/\,\./g, "")) * 100 //multiplica o valor digitado por 100
         return value
 
     },
 
-    formatDate(date){
+    formatDate(date) {
         //split = separar coisas nesse caso o - para formatar a data ,dia, mes
         const splittedDate = date.split("-")
         return `${splittedDate[2]} / ${splittedDate[1]} / ${splittedDate[0]}`
@@ -174,31 +186,31 @@ const Form = {
     date: document.querySelector('input#date'),//pegando todo valor do input que tenha id date 
 
 
-    getValues(){
-        return{
+    getValues() {
+        return {
             description: Form.description.value,
             amount: Form.amount.value,//retornando apenas os valores nescessario do input com id especifico
             date: Form.date.value
-    
+
         }
     },
 
 
 
     validateFields() {   //verificar se todas a informaçoes foram preenchidas
-        const {description, amount, date} = Form.getValues()
+        const { description, amount, date } = Form.getValues()
         //trim == limpar espaços vazio === igual || == ou conectivo logico
-        if(description.trim() === "" || 
-        amount.trim() === "" ||  
-        date.trim() === "") {
+        if (description.trim() === "" ||
+            amount.trim() === "" ||
+            date.trim() === "") {
             //throw == jogar pra fora,  novo erro ex: criando um novo erro
             throw new Error("Por favor, preencha todos os campos")
-            
+
         }
     },
 
-    formatValues(){
-        let {description, amount, date} = Form.getValues()
+    formatValues() {
+        let { description, amount, date } = Form.getValues()
         amount = Utils.formatAmount(amount)
 
         date = Utils.formatDate(date)
@@ -208,7 +220,7 @@ const Form = {
             amount,
             date
         }
-        
+
     },
 
     clearFields() {//limpando os campos
@@ -217,34 +229,36 @@ const Form = {
         Form.date.value = ""
     },
 
-    saveTransaction(transaction){//salvando transaçao
+    saveTransaction(transaction) {//salvando transaçao
         Transaction.add(transaction)
     },
 
     submit(event) {
         event.preventDefault()//tira o comportamento padrao do potao permitindo criar um novo comportamento
 
-        try{
-        Form.validateFields()
-        //formatar os dados para salvar
-        const transaction = Form.formatValues()
-        //salvar
-        Form.saveTransaction(transaction)
-        //apagar os dados do formulario
-        Form.clearFields()
-        //fechar o modal tela de cadastro
-        Modal.close()
-        }catch (error){//PEGAR ERROS CRIADO COMO throw
+        try {
+            Form.validateFields()
+            //formatar os dados para salvar
+            const transaction = Form.formatValues()
+            //salvar
+            Form.saveTransaction(transaction)
+            //apagar os dados do formulario
+            Form.clearFields()
+            //fechar o modal tela de cadastro
+            Modal.close()
+        } catch (error) {//PEGAR ERROS CRIADO COMO throw
             alert(error.message) //pegando o erro e dando um alerta!
         }
-     
-        
+
+
     }
 }
 
 //dom.addTransaction(transactions[0]) mostrando os dados por indice
 //dom.addTransaction(transactions[1])
 //dom.addTransaction(transactions[2])
+
+
 
 const App = {
     init() {//adciona os itens todos
